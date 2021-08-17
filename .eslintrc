@@ -30,7 +30,8 @@
     "no-extra-semi": "warn",
     "jsx-quotes": ["error", "prefer-double"],
     "quotes": ["error", "double"],
-    "quote-props": ["error", "as-needed"]
+    "quote-props": ["error", "as-needed"],
+    "no-invalid-this": "off"
   },
   "ignorePatterns": ["*.css"]
 }
