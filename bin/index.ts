@@ -7,6 +7,7 @@ import { HookGenerator } from "../src/HookGenerator";
 import { Path } from "../src/Path";
 import { GeneratedEntity } from "../src/GeneratedEntity";
 import { ComponentGenerator } from "../src/ComponentGenerator";
+import { version } from "../package.json";
 
 const program = createCommand();
 
@@ -19,9 +20,9 @@ class App {
     this.#commands = commands;
   }
 
-  start = () => {
+  start = (appVersion: string) => {
     this.#program
-      .version("1.0.0-alpha.3", "-v, --version", "Comet cli version")
+      .version(appVersion, "-v, --version", "Comet cli version")
       .usage("<command> [options]")
       .helpOption("-h, --help", "Output usage information");
     this.#commands.forEach((command) => command.load(this.#program));
@@ -38,4 +39,4 @@ const generators: Generators = {
 const generateCommand = new GenerateCommand(generators);
 
 const app = new App(program, [generateCommand]);
-app.start();
+app.start(version);
