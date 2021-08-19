@@ -23,17 +23,17 @@ export class GenerateCommand implements Command {
       .alias("g")
       .description("Generate something")
       .action(async (schematic, name) => {
-        if (
-          schematic === GeneratedEntity.HOOK ||
-          schematic === GeneratedEntity.HOOK_SHORT
-        ) {
-          await this.#hookGenerator.generate(name);
-        }
-        if (
-          schematic === GeneratedEntity.COMPONENT ||
-          schematic === GeneratedEntity.COMPONENT_SHORT
-        ) {
-          await this.#componentGenerator.generate(name);
+        switch (schematic) {
+          case GeneratedEntity.HOOK:
+          case GeneratedEntity.HOOK_SHORT:
+            await this.#hookGenerator.generate(name);
+            break;
+          case GeneratedEntity.COMPONENT:
+          case GeneratedEntity.COMPONENT_SHORT:
+            await this.#componentGenerator.generate(name);
+            break;
+          default:
+            console.log(schematic + " command does not exist");
         }
       });
   }

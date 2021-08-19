@@ -30,18 +30,18 @@ export class ComponentGenerator implements Generator {
     this.#path = path;
   }
 
-  generate = async (name: string) => {
+  generate = async (name: string): Promise<void> => {
+    const formattedName = this.#formatName(name);
     try {
-      await fs.promises.mkdir(
-        this.#path.componentsFolder(this.#formatName(name)),
-        { recursive: true },
+      await fs.promises.mkdir(this.#path.componentsFolder(formattedName), {
+        recursive: true,
+      });
+      await fs.promises.writeFile(
+        this.#path.componentFile(formattedName),
+        componentTemplate(formattedName),
       );
       await fs.promises.writeFile(
-        this.#path.componentFile(this.#formatName(name)),
-        componentTemplate(this.#formatName(name)),
-      );
-      await fs.promises.writeFile(
-        this.#path.styleComponentFile(this.#formatName(name)),
+        this.#path.styleComponentFile(formattedName),
         componentStyleTemplate(),
       );
       console.log("Success");
@@ -50,6 +50,6 @@ export class ComponentGenerator implements Generator {
     }
   };
 
-  #formatName = (name: string) =>
+  #formatName = (name: string): string =>
     `${name[0].toUpperCase()}${name.substring(1)}`;
 }

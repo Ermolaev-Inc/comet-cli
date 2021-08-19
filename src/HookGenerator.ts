@@ -14,7 +14,7 @@ export class HookGenerator implements Generator {
     this.#path = path;
   }
 
-  generate = async (name: string) => {
+  generate = async (name: string): Promise<void> => {
     try {
       await fs.promises.mkdir(this.#path.hookFolder(), { recursive: true });
       await fs.promises.writeFile(
@@ -27,6 +27,6 @@ export class HookGenerator implements Generator {
     }
   };
 
-  #formatName = (name: string) =>
+  #formatName = (name: string): string =>
     `${name[0].toUpperCase()}${name.substring(1)}`;
 }
