@@ -14,22 +14,17 @@ export class HookGenerator implements Generator {
     this.#path = path;
   }
 
-  generate = (name: string) => {
-    fs.mkdir(this.#path.hookFolder(), { recursive: true }, (err) => {
-      if (err) {
-        throw err;
-      }
-      fs.writeFile(
+  generate = async (name: string) => {
+    try {
+      await fs.promises.mkdir(this.#path.hookFolder(), { recursive: true });
+      await fs.promises.writeFile(
         this.#path.hookFile(name),
         hookTemplate(this.#formatName(name)),
-        (err) => {
-          if (err) {
-            throw err;
-          }
-          console.log("Success");
-        },
       );
-    });
+      console.log("Success");
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   #formatName = (name: string) =>
