@@ -3,4 +3,6 @@ export enum GeneratedEntity {
   "HOOK_SHORT" = "h",
   "COMPONENT" = "component",
   "COMPONENT_SHORT" = "c",
+  "PAGE" = "page",
+  "PAGE_SHORT" = "p",
 }

@@ -8,6 +8,7 @@ import { Path } from "../src/Path";
 import { GeneratedEntity } from "../src/GeneratedEntity";
 import { ComponentGenerator } from "../src/ComponentGenerator";
 import { version } from "../package.json";
+import { PageGenerator } from "../src/PageGenerator";
 
 const program = createCommand();
 
@@ -35,6 +36,7 @@ const path = new Path();
 const generators: Generators = {
   [GeneratedEntity.HOOK]: new HookGenerator(path),
   [GeneratedEntity.COMPONENT]: new ComponentGenerator(path),
+  [GeneratedEntity.PAGE]: new PageGenerator(path),
 };
 const generateCommand = new GenerateCommand(generators);
 
