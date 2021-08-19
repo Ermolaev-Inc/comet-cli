@@ -2,7 +2,7 @@ import { HookPath } from "./HookPath";
 import { ComponentPath } from "./ComponentPath";
 import { PagePath } from "./PagePath";
 
-export class Path implements HookPath, ComponentPath, PagePath {
+export class GeneralPath implements HookPath, ComponentPath, PagePath {
   hookFolder = () => `${process.cwd()}/src/hooks`;
   hookFile = (name: string) => `${this.hookFolder()}/${name}.hook.ts`;
 
