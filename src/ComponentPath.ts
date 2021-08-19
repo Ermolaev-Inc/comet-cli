@@ -1,5 +1,7 @@
+import { PathFunction } from "./types/PathFunction";
+
 export interface ComponentPath {
-  componentsFolder: (name: string) => string;
-  componentFile: (name: string) => string;
-  styleComponentFile: (name: string) => string;
+  componentsFolder: PathFunction;
+  componentFile: PathFunction;
+  componentStylesFile: PathFunction;
 }

@@ -41,7 +41,7 @@ export class ComponentGenerator implements Generator {
         componentTemplate(formattedName),
       );
       await fs.promises.writeFile(
-        this.#path.styleComponentFile(formattedName),
+        this.#path.componentStylesFile(formattedName),
         componentStyleTemplate(),
       );
       console.log("Success");
