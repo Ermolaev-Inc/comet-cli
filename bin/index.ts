@@ -6,6 +6,7 @@ import { Program } from "../src/types/Program";
 import { HookGenerator } from "../src/HookGenerator";
 import { Path } from "../src/Path";
 import { GeneratedEntity } from "../src/GeneratedEntity";
+import { ComponentGenerator } from "../src/ComponentGenerator";
 
 const program = createCommand();
 
@@ -32,6 +33,7 @@ const path = new Path();
 
 const generators: Generators = {
   [GeneratedEntity.HOOK]: new HookGenerator(path),
+  [GeneratedEntity.COMPONENT]: new ComponentGenerator(path),
 };
 const generateCommand = new GenerateCommand(generators);
 
