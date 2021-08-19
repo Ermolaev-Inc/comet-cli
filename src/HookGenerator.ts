@@ -2,7 +2,7 @@ import fs from "fs";
 import { Generator } from "./Generator";
 import { HookPath } from "./HookPath";
 
-export const hookTemplate = (name: string) => `export const use${name} = () => {
+const hookTemplate = (name: string) => `export const use${name} = () => {
   return;
 };
 `;
