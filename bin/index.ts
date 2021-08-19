@@ -4,7 +4,7 @@ import { Command } from "../src/commands/Command";
 import { GenerateCommand, Generators } from "../src/commands/GenerateCommand";
 import { Program } from "../src/types/Program";
 import { HookGenerator } from "../src/generators/HookGenerator";
-import { Path } from "../src/paths/Path";
+import { GeneralPath } from "../src/paths/GeneralPath";
 import { GeneratedEntity } from "../src/enums/GeneratedEntity";
 import { ComponentGenerator } from "../src/generators/ComponentGenerator";
 import { version } from "../package.json";
@@ -31,7 +31,7 @@ class App {
   };
 }
 
-const path = new Path();
+const path = new GeneralPath();
 
 const generators: Generators = {
   [GeneratedEntity.HOOK]: new HookGenerator(path),
