@@ -1,4 +1,4 @@
-import { PathFunction } from "./types/PathFunction";
+import { PathFunction } from "../types/PathFunction";
 
 export interface PagePath {
   pageFolder: PathFunction;

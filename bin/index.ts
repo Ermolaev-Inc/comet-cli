@@ -1,14 +1,14 @@
 #! /usr/bin/env node
 import { createCommand } from "commander";
-import { Command } from "../src/Command";
-import { GenerateCommand, Generators } from "../src/GenerateCommand";
+import { Command } from "../src/commands/Command";
+import { GenerateCommand, Generators } from "../src/commands/GenerateCommand";
 import { Program } from "../src/types/Program";
-import { HookGenerator } from "../src/HookGenerator";
-import { Path } from "../src/Path";
-import { GeneratedEntity } from "../src/GeneratedEntity";
-import { ComponentGenerator } from "../src/ComponentGenerator";
+import { HookGenerator } from "../src/generators/HookGenerator";
+import { Path } from "../src/paths/Path";
+import { GeneratedEntity } from "../src/enums/GeneratedEntity";
+import { ComponentGenerator } from "../src/generators/ComponentGenerator";
 import { version } from "../package.json";
-import { PageGenerator } from "../src/PageGenerator";
+import { PageGenerator } from "../src/generators/PageGenerator";
 
 const program = createCommand();
 

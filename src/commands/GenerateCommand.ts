@@ -1,7 +1,7 @@
 import { Command } from "./Command";
-import { Program } from "./types/Program";
-import { Generator } from "./Generator";
-import { GeneratedEntity } from "./GeneratedEntity";
+import { Program } from "../types/Program";
+import { Generator } from "../generators/Generator";
+import { GeneratedEntity } from "../enums/GeneratedEntity";
 
 export interface Generators {
   [GeneratedEntity.HOOK]: Generator;

@@ -1,5 +1,5 @@
 import { Generator } from "./Generator";
-import { PagePath } from "./PagePath";
+import { PagePath } from "../paths/PagePath";
 import fs from "fs";
 
 const pageContainerFileTemplate = (
