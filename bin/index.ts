@@ -1,7 +1,7 @@
 #! /usr/bin/env node
 import { createCommand } from "commander";
 import { Command } from "../src/commands/Command";
-import { GenerateCommand, Generators } from "../src/commands/GenerateCommand";
+import { GenerateCommand } from "../src/commands/GenerateCommand";
 import { Program } from "../src/types/Program";
 import { HookGenerator } from "../src/generators/HookGenerator";
 import { GeneralPath } from "../src/paths/GeneralPath";
@@ -9,6 +9,7 @@ import { GeneratedEntity } from "../src/enums/GeneratedEntity";
 import { ComponentGenerator } from "../src/generators/ComponentGenerator";
 import { version } from "../package.json";
 import { PageGenerator } from "../src/generators/PageGenerator";
+import { Generators } from "../src/generators/Generators";
 
 const program = createCommand();
 

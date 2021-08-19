@@ -2,12 +2,7 @@ import { Command } from "./Command";
 import { Program } from "../types/Program";
 import { Generator } from "../generators/Generator";
 import { GeneratedEntity } from "../enums/GeneratedEntity";
-
-export interface Generators {
-  [GeneratedEntity.HOOK]: Generator;
-  [GeneratedEntity.COMPONENT]: Generator;
-  [GeneratedEntity.PAGE]: Generator;
-}
+import { Generators } from "../generators/Generators";
 
 export class GenerateCommand implements Command {
   #hookGenerator: Generator;
