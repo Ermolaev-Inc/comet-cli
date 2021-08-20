@@ -1,4 +1,4 @@
-import fs from "fs";
+import * as fs from "fs";
 import { HookGenerator } from "../src/generators/HookGenerator";
 import { HookPath } from "../src/paths/HookPath";
 import { Generator } from "../src/generators/Generator";
