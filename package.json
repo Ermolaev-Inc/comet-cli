@@ -1,6 +1,6 @@
 {
   "name": "comet-cli",
-  "version": "1.0.0-alpha.3",
+  "version": "1.0.0-alpha.4",
   "description": "CLI tool for react-comet app",
   "main": "bin/index.js",
   "type": "commonjs",
