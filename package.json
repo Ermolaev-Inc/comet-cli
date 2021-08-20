@@ -8,7 +8,8 @@
     "comet": "./bin/index.js"
   },
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "tests": "jest"
   },
   "author": "Ermolaev Ilya <Ermolaev.ID@yandex.ru>",
   "license": "MIT",
