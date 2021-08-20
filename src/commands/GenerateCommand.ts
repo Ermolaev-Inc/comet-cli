@@ -19,6 +19,10 @@ export class GenerateCommand implements Command {
       .alias("g")
       .description("Generate something")
       .action((command: GeneratedEntity | GeneratedEntityShort, name) => {
+        if (!name || name.length === 0) {
+          console.log("Please input correct name");
+          return;
+        }
         try {
           this.#generators[this.#fillCommandName(command)].generate(name);
         } catch (e) {
