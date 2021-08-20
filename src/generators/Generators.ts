@@ -1,8 +1,8 @@
-import { GeneratedEntity } from "../enums/GeneratedEntity";
+import { GeneratedEntityFull } from "../enums/GeneratedEntity";
 import { Generator } from "./Generator";
 
 export interface Generators {
-  [GeneratedEntity.HOOK]: Generator;
-  [GeneratedEntity.COMPONENT]: Generator;
-  [GeneratedEntity.PAGE]: Generator;
+  [GeneratedEntityFull.HOOK]: Generator;
+  [GeneratedEntityFull.COMPONENT]: Generator;
+  [GeneratedEntityFull.PAGE]: Generator;
 }
