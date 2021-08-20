@@ -9,7 +9,8 @@
   },
   "scripts": {
     "build": "tsc",
-    "tests": "jest"
+    "tests": "jest",
+    "lint": "eslint '{bin,src,tests}/**/*.ts' --fix"
   },
   "author": "Ermolaev Ilya <Ermolaev.ID@yandex.ru>",
   "license": "MIT",
