@@ -11,6 +11,17 @@ const hookTemplate = `export const useStyles = () => {
 describe("HookGenerator tests", () => {
   let hookGenerator: Generator;
 
+  const existChecking = async () => {
+    try {
+      await fs.promises.access(
+        `${process.cwd()}/playground/hooks/http.hook.ts`,
+      );
+      return true;
+    } catch (e) {
+      return false;
+    }
+  };
+
   beforeAll(() => {
     class MockPath implements HookPath {
       hookFile = (name: string) => `${this.hookFolder()}/${name}.hook.ts`;
@@ -22,10 +33,8 @@ describe("HookGenerator tests", () => {
   test("standard hook generating", async () => {
     try {
       await hookGenerator.generate("http");
-      await fs.promises.access(
-        `${process.cwd()}/playground/hooks/http.hook.ts`,
-      );
-      expect(true).toBe(true);
+      const res = await existChecking();
+      expect(res).toBe(true);
     } catch (e) {
       expect(false).toBe(true);
     }
@@ -34,10 +43,8 @@ describe("HookGenerator tests", () => {
   test("repeat standard hook generating", async () => {
     try {
       await hookGenerator.generate("http");
-      await fs.promises.access(
-        `${process.cwd()}/playground/hooks/http.hook.ts`,
-      );
-      expect(true).toBe(true);
+      const res = await existChecking();
+      expect(res).toBe(true);
     } catch (e) {
       expect(false).toBe(true);
     }
