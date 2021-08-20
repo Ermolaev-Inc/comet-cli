@@ -1,13 +1,15 @@
 #! /usr/bin/env node
 import { createCommand } from "commander";
-import { Command } from "../src/Command";
-import { GenerateCommand, Generators } from "../src/GenerateCommand";
+import { Command } from "../src/commands/Command";
+import { GenerateCommand } from "../src/commands/GenerateCommand";
 import { Program } from "../src/types/Program";
-import { HookGenerator } from "../src/HookGenerator";
-import { Path } from "../src/Path";
-import { GeneratedEntity } from "../src/GeneratedEntity";
-import { ComponentGenerator } from "../src/ComponentGenerator";
+import { HookGenerator } from "../src/generators/HookGenerator";
+import { GeneralPath } from "../src/paths/GeneralPath";
+import { GeneratedEntity } from "../src/enums/GeneratedEntity";
+import { ComponentGenerator } from "../src/generators/ComponentGenerator";
 import { version } from "../package.json";
+import { PageGenerator } from "../src/generators/PageGenerator";
+import { Generators } from "../src/generators/Generators";
 
 const program = createCommand();
 
@@ -30,11 +32,12 @@ class App {
   };
 }
 
-const path = new Path();
+const path = new GeneralPath();
 
 const generators: Generators = {
   [GeneratedEntity.HOOK]: new HookGenerator(path),
   [GeneratedEntity.COMPONENT]: new ComponentGenerator(path),
+  [GeneratedEntity.PAGE]: new PageGenerator(path),
 };
 const generateCommand = new GenerateCommand(generators);
 

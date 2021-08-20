@@ -1,6 +1,6 @@
 import fs from "fs";
 import { Generator } from "./Generator";
-import { HookPath } from "./HookPath";
+import { HookPath } from "../paths/HookPath";
 
 const hookTemplate = (name: string) => `export const use${name} = () => {
   return;

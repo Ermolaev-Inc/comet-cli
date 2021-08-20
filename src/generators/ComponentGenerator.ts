@@ -1,6 +1,6 @@
 import fs from "fs";
 import { Generator } from "./Generator";
-import { ComponentPath } from "./ComponentPath";
+import { ComponentPath } from "../paths/ComponentPath";
 
 const componentTemplate = (
   name: string,
@@ -41,7 +41,7 @@ export class ComponentGenerator implements Generator {
         componentTemplate(formattedName),
       );
       await fs.promises.writeFile(
-        this.#path.styleComponentFile(formattedName),
+        this.#path.componentStylesFile(formattedName),
         componentStyleTemplate(),
       );
       console.log("Success");

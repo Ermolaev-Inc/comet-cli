@@ -1,6 +1,11 @@
 export enum GeneratedEntity {
   "HOOK" = "hook",
-  "HOOK_SHORT" = "h",
   "COMPONENT" = "component",
+  "PAGE" = "page",
+}
+
+export enum GeneratedEntityShort {
+  "HOOK_SHORT" = "h",
   "COMPONENT_SHORT" = "c",
+  "PAGE_SHORT" = "p",
 }
