@@ -5,6 +5,7 @@ Use it cli with [react-comet](https://github.com/Ermolaev-Inc/react-comet) templ
 Run `npm i comet-cli -g`
 
 ## Commands
+**please run all commands in root directory**
 ### `generate` or `g`
 You can generate:
 - **Hooks** <br>
