@@ -13,7 +13,7 @@ import { Generators } from "../src/generators/Generators";
 
 const program = createCommand();
 
-class App {
+export class App {
   readonly #program: Program;
   readonly #commands: Command[];
 
