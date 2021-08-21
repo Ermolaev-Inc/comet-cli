@@ -5,7 +5,7 @@ import { GenerateCommand } from "../src/commands/GenerateCommand";
 import { Program } from "../src/types/Program";
 import { HookGenerator } from "../src/generators/HookGenerator";
 import { GeneralPath } from "../src/paths/GeneralPath";
-import { GeneratedEntity } from "../src/enums/GeneratedEntity";
+import { GeneratedEntityFull } from "../src/enums/GeneratedEntity";
 import { ComponentGenerator } from "../src/generators/ComponentGenerator";
 import { version } from "../package.json";
 import { PageGenerator } from "../src/generators/PageGenerator";
@@ -35,9 +35,9 @@ export class App {
 const path = new GeneralPath();
 
 const generators: Generators = {
-  [GeneratedEntity.HOOK]: new HookGenerator(path),
-  [GeneratedEntity.COMPONENT]: new ComponentGenerator(path),
-  [GeneratedEntity.PAGE]: new PageGenerator(path),
+  [GeneratedEntityFull.HOOK]: new HookGenerator(path),
+  [GeneratedEntityFull.COMPONENT]: new ComponentGenerator(path),
+  [GeneratedEntityFull.PAGE]: new PageGenerator(path),
 };
 const generateCommand = new GenerateCommand(generators);
 

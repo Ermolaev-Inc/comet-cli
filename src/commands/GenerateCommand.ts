@@ -2,6 +2,7 @@ import { Command } from "./Command";
 import { Program } from "../types/Program";
 import {
   GeneratedEntity,
+  GeneratedEntityFull,
   GeneratedEntityShort,
 } from "../enums/GeneratedEntity";
 import { Generators } from "../generators/Generators";
@@ -18,7 +19,7 @@ export class GenerateCommand implements Command {
       .command("generate <command> [name]")
       .alias("g")
       .description("Generate something")
-      .action((command: GeneratedEntity | GeneratedEntityShort, name) => {
+      .action((command: GeneratedEntity, name) => {
         if (!name || name.length === 0) {
           console.log("Please input correct name");
           return;
@@ -31,16 +32,14 @@ export class GenerateCommand implements Command {
       });
   }
 
-  #fillCommandName = (
-    command: GeneratedEntity | GeneratedEntityShort,
-  ): GeneratedEntity => {
+  #fillCommandName = (command: GeneratedEntity): GeneratedEntityFull => {
     switch (command) {
       case GeneratedEntityShort.HOOK_SHORT:
-        return GeneratedEntity.HOOK;
+        return GeneratedEntityFull.HOOK;
       case GeneratedEntityShort.COMPONENT_SHORT:
-        return GeneratedEntity.COMPONENT;
+        return GeneratedEntityFull.COMPONENT;
       case GeneratedEntityShort.PAGE_SHORT:
-        return GeneratedEntity.PAGE;
+        return GeneratedEntityFull.PAGE;
       default:
         return command;
     }
