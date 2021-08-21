@@ -2,7 +2,7 @@
 Use it cli with [react-comet](https://github.com/Ermolaev-Inc/react-comet) template
 
 ## Installation
-Run `npm i comet -g`
+Run `npm i comet-cli -g`
 
 ## Commands
 ### `generate` or `g`
