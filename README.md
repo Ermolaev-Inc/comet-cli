@@ -1,6 +1,9 @@
 # Comet CLI
 Use it cli with [react-comet](https://github.com/Ermolaev-Inc/react-comet) template
 
+## Installation
+Run `npm i comet -g`
+
 ## Commands
 ### `generate` or `g`
 You can generate:
