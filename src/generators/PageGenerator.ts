@@ -7,7 +7,7 @@ const pageContainerFileTemplate = (
 ) => `import { ${name} } from "./${name}";
 
 export const ${name}Container = () => {
-  return <${name} />; 
+  return <${name} />;
 };
 `;
 
@@ -20,7 +20,7 @@ export const ${name} = () => {
     <S.Wrapper>
       <p>Component from CLI :)</p>
     </S.Wrapper>
-  );  
+  );
 };
 `;
 

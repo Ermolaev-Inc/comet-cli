@@ -10,14 +10,14 @@ export const Home = () => {
     <S.Wrapper>
       <p>Component from CLI :)</p>
     </S.Wrapper>
-  );  
+  );
 };
 `;
 
 const pageContainerTemplate = `import { Home } from "./Home";
 
 export const HomeContainer = () => {
-  return <Home />; 
+  return <Home />;
 };
 `;
 
