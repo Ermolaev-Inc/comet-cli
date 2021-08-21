@@ -3,3 +3,5 @@ node_modules
 *.js
 *.d.ts
 .DS_Store
+playground
+!/utils/cleanup.js
