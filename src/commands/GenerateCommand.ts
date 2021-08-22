@@ -16,24 +16,24 @@ export class GenerateCommand implements Command {
 
   load(program: Program): void {
     program
-      .command("generate <command> [name]")
+      .command("generate <entity> [name]")
       .alias("g")
-      .description("Generate something")
-      .action((command: GeneratedEntity, name) => {
+      .description("Generate entity")
+      .action((entity: GeneratedEntity, name) => {
         if (!name || name.length === 0) {
           console.log("Please input correct name");
           return;
         }
         try {
-          this.#generators[this.#fillCommandName(command)].generate(name);
+          this.#generators[this.#fillEntityName(entity)].generate(name);
         } catch (e) {
-          console.log(`${command} command does not exist`);
+          console.log(`${entity} entity does not exist`);
         }
       });
   }
 
-  #fillCommandName = (command: GeneratedEntity): GeneratedEntityFull => {
-    switch (command) {
+  #fillEntityName = (entity: GeneratedEntity): GeneratedEntityFull => {
+    switch (entity) {
       case GeneratedEntityShort.HOOK_SHORT:
         return GeneratedEntityFull.HOOK;
       case GeneratedEntityShort.COMPONENT_SHORT:
@@ -41,7 +41,7 @@ export class GenerateCommand implements Command {
       case GeneratedEntityShort.PAGE_SHORT:
         return GeneratedEntityFull.PAGE;
       default:
-        return command;
+        return entity;
     }
   };
 }
