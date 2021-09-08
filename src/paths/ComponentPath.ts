@@ -4,4 +4,5 @@ export interface ComponentPath {
   componentsFolder: PathFunction;
   componentFile: PathFunction;
   componentStylesFile: PathFunction;
+  componentIndexFile: PathFunction;
 }
