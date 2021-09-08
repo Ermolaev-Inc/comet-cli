@@ -22,6 +22,11 @@ export const Wrapper = styled.div\`
 \`;
 `;
 
+const componentIndexTemplate = `import { Button } from "./Button";
+
+export { Button };
+`;
+
 describe("ComponentGenerator tests", () => {
   let componentGenerator: Generator;
 
@@ -48,6 +53,8 @@ describe("ComponentGenerator tests", () => {
         `${this.componentsFolder(name)}/${name}.tsx`;
       componentStylesFile = (name: string) =>
         `${this.componentsFolder(name)}/${name}.styles.ts`;
+      componentIndexFile = (name: string) =>
+        `${this.componentsFolder(name)}/index.ts`;
     }
     componentGenerator = new ComponentGenerator(new FakePath());
     await componentGenerator.generate("button");
@@ -79,6 +86,17 @@ describe("ComponentGenerator tests", () => {
         `${process.cwd()}/playground/components/Button/Button.styles.ts`,
       );
       expect(content.toString()).toBe(componentStylesTemplate);
+    } catch (e) {
+      expect(false).toBe(true);
+    }
+  });
+
+  test("component index file template", async () => {
+    try {
+      const content = await fs.promises.readFile(
+        `${process.cwd()}/playground/components/Button/index.ts`,
+      );
+      expect(content.toString()).toBe(componentIndexTemplate);
     } catch (e) {
       expect(false).toBe(true);
     }

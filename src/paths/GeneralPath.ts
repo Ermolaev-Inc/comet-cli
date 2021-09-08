@@ -12,6 +12,8 @@ export class GeneralPath implements HookPath, ComponentPath, PagePath {
     `${this.componentsFolder(name)}/${name}.tsx`;
   componentStylesFile = (name: string) =>
     `${this.componentsFolder(name)}/${name}.styles.ts`;
+  componentIndexFile = (name: string) =>
+    `${this.componentsFolder(name)}/index.ts`;
 
   pageFolder = (name: string) => `${process.cwd()}/src/pages/${name}`;
   pageContainerFile = (name: string) =>

@@ -23,6 +23,13 @@ export const Wrapper = styled.div\`
 \`;
 `;
 
+const componentIndexTemplate = (
+  name: string,
+) => `import { ${name} } from "./${name}";
+
+export { ${name} };
+`;
+
 export class ComponentGenerator implements Generator {
   #path: ComponentPath;
 
@@ -43,6 +50,10 @@ export class ComponentGenerator implements Generator {
       await fs.promises.writeFile(
         this.#path.componentStylesFile(formattedName),
         componentStyleTemplate(),
+      );
+      await fs.promises.writeFile(
+        this.#path.componentIndexFile(formattedName),
+        componentIndexTemplate(formattedName),
       );
       console.log("Success");
     } catch (e) {
