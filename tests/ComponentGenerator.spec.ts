@@ -24,7 +24,7 @@ export const Wrapper = styled.div\`
 
 const componentIndexTemplate = `import { Button } from "./Button";
 
-export { Button }; 
+export { Button };
 `;
 
 describe("ComponentGenerator tests", () => {

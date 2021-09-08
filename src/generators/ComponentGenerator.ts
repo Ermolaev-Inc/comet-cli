@@ -27,7 +27,7 @@ const componentIndexTemplate = (
   name: string,
 ) => `import { ${name} } from "./${name}";
 
-export { ${name} }; 
+export { ${name} };
 `;
 
 export class ComponentGenerator implements Generator {
