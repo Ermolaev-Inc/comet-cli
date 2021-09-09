@@ -10,6 +10,7 @@ import { ComponentGenerator } from "../src/generators/ComponentGenerator";
 import { version } from "../package.json";
 import { PageGenerator } from "../src/generators/PageGenerator";
 import { Generators } from "../src/generators/Generators";
+import { ComponentPathFinder } from "../src/paths/ComponentPathFinder";
 
 const program = createCommand();
 
@@ -36,7 +37,9 @@ const path = new GeneralPath();
 
 const generators: Generators = {
   [GeneratedEntityFull.HOOK]: new HookGenerator(path),
-  [GeneratedEntityFull.COMPONENT]: new ComponentGenerator(path),
+  [GeneratedEntityFull.COMPONENT]: new ComponentGenerator(
+    new ComponentPathFinder(),
+  ),
   [GeneratedEntityFull.PAGE]: new PageGenerator(path),
 };
 const generateCommand = new GenerateCommand(generators);

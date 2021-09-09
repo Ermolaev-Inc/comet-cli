@@ -2,18 +2,9 @@ import { HookPath } from "./HookPath";
 import { ComponentPath } from "./ComponentPath";
 import { PagePath } from "./PagePath";
 
-export class GeneralPath implements HookPath, ComponentPath, PagePath {
+export class GeneralPath implements HookPath, PagePath {
   hookFolder = () => `${process.cwd()}/src/hooks`;
   hookFile = (name: string) => `${this.hookFolder()}/${name}.hook.ts`;
-
-  componentsFolder = (name: string) =>
-    `${process.cwd()}/src/components/${name}`;
-  componentFile = (name: string) =>
-    `${this.componentsFolder(name)}/${name}.tsx`;
-  componentStylesFile = (name: string) =>
-    `${this.componentsFolder(name)}/${name}.styles.ts`;
-  componentIndexFile = (name: string) =>
-    `${this.componentsFolder(name)}/index.ts`;
 
   pageFolder = (name: string) => `${process.cwd()}/src/pages/${name}`;
   pageContainerFile = (name: string) =>

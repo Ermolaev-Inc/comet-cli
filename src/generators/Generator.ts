@@ -1,3 +1,3 @@
 export interface Generator {
-  generate: (name: string) => void;
+  generate: (name: string) => Promise<void>;
 }
