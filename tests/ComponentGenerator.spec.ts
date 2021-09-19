@@ -53,7 +53,7 @@ describe("ComponentGenerator tests", () => {
 
   beforeAll(async () => {
     componentGenerator = new ComponentGenerator(new FakeComponentPathFinder());
-    await componentGenerator.generate("Button");
+    await componentGenerator.generate("button");
   });
 
   test("standard component generating", async () => {

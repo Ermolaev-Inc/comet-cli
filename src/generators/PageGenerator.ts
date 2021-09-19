@@ -1,6 +1,7 @@
 import { Generator } from "./Generator";
 import { PagePath } from "../paths/PagePath";
-import fs from "fs";
+import fs from "fs/promises";
+import { PathFinder } from "../paths/PathFinder";
 
 const pageContainerFileTemplate = (
   name: string,
@@ -33,30 +34,26 @@ export const Wrapper = styled.div\`
 `;
 
 export class PageGenerator implements Generator {
-  #path: PagePath;
+  #pathFinder: PathFinder<PagePath>;
 
-  constructor(path: PagePath) {
-    this.#path = path;
+  constructor(pathFinder: PathFinder<PagePath>) {
+    this.#pathFinder = pathFinder;
   }
 
   generate = async (name: string): Promise<void> => {
     const formattedName = this.#formatName(name);
+    const { folder, containerFile, file, stylesFile } =
+      this.#pathFinder.generate(formattedName);
     try {
-      await fs.promises.mkdir(this.#path.pageFolder(formattedName), {
+      await fs.mkdir(folder, {
         recursive: true,
       });
-      await fs.promises.writeFile(
-        this.#path.pageContainerFile(formattedName),
+      await fs.writeFile(
+        containerFile,
         pageContainerFileTemplate(formattedName),
       );
-      await fs.promises.writeFile(
-        this.#path.pageFile(formattedName),
-        pageFileTemplate(formattedName),
-      );
-      await fs.promises.writeFile(
-        this.#path.pageStylesFile(formattedName),
-        pageFileStyleTemplate(),
-      );
+      await fs.writeFile(file, pageFileTemplate(formattedName));
+      await fs.writeFile(stylesFile, pageFileStyleTemplate());
       console.log("Success");
     } catch (e) {
       console.log(e);
