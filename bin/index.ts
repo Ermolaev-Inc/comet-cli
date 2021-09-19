@@ -11,6 +11,7 @@ import { version } from "../package.json";
 import { PageGenerator } from "../src/generators/PageGenerator";
 import { Generators } from "../src/generators/Generators";
 import { ComponentPathFinder } from "../src/paths/ComponentPathFinder";
+import { HookPathFinder } from "../src/paths/HookPathFinder";
 
 const program = createCommand();
 
@@ -36,7 +37,7 @@ export class App {
 const path = new GeneralPath();
 
 const generators: Generators = {
-  [GeneratedEntityFull.HOOK]: new HookGenerator(path),
+  [GeneratedEntityFull.HOOK]: new HookGenerator(new HookPathFinder()),
   [GeneratedEntityFull.COMPONENT]: new ComponentGenerator(
     new ComponentPathFinder(),
   ),
