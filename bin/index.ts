@@ -4,12 +4,14 @@ import { Command } from "../src/commands/Command";
 import { GenerateCommand } from "../src/commands/GenerateCommand";
 import { Program } from "../src/types/Program";
 import { HookGenerator } from "../src/generators/HookGenerator";
-import { GeneralPath } from "../src/paths/GeneralPath";
 import { GeneratedEntityFull } from "../src/enums/GeneratedEntity";
 import { ComponentGenerator } from "../src/generators/ComponentGenerator";
 import { version } from "../package.json";
 import { PageGenerator } from "../src/generators/PageGenerator";
 import { Generators } from "../src/generators/Generators";
+import { ComponentPathFinder } from "../src/paths/ComponentPathFinder";
+import { HookPathFinder } from "../src/paths/HookPathFinder";
+import { PagePathFinder } from "../src/paths/PagePathFinder";
 
 const program = createCommand();
 
@@ -32,12 +34,12 @@ export class App {
   };
 }
 
-const path = new GeneralPath();
-
 const generators: Generators = {
-  [GeneratedEntityFull.HOOK]: new HookGenerator(path),
-  [GeneratedEntityFull.COMPONENT]: new ComponentGenerator(path),
-  [GeneratedEntityFull.PAGE]: new PageGenerator(path),
+  [GeneratedEntityFull.HOOK]: new HookGenerator(new HookPathFinder()),
+  [GeneratedEntityFull.COMPONENT]: new ComponentGenerator(
+    new ComponentPathFinder(),
+  ),
+  [GeneratedEntityFull.PAGE]: new PageGenerator(new PagePathFinder()),
 };
 const generateCommand = new GenerateCommand(generators);
 

@@ -2,6 +2,9 @@ import { Generator } from "../src/generators/Generator";
 import { ComponentPath } from "../src/paths/ComponentPath";
 import { ComponentGenerator } from "../src/generators/ComponentGenerator";
 import * as fs from "fs";
+import { PathFinder } from "../src/paths/PathFinder";
+import { ComponentPathFinder } from "../src/paths/ComponentPathFinder";
+import { FakeComponentPathFinder } from "./FakeComponentPathFinder";
 
 const componentTemplate = `import * as S from "./Button.styles";
 
@@ -39,6 +42,9 @@ describe("ComponentGenerator tests", () => {
       await fs.promises.access(
         `${process.cwd()}/playground/components/Button/Button.styles.ts`,
       );
+      await fs.promises.access(
+        `${process.cwd()}/playground/components/Button/index.ts`,
+      );
       return true;
     } catch (e) {
       return false;
@@ -46,17 +52,7 @@ describe("ComponentGenerator tests", () => {
   };
 
   beforeAll(async () => {
-    class FakePath implements ComponentPath {
-      componentsFolder = (name: string) =>
-        `${process.cwd()}/playground/components/${name}`;
-      componentFile = (name: string) =>
-        `${this.componentsFolder(name)}/${name}.tsx`;
-      componentStylesFile = (name: string) =>
-        `${this.componentsFolder(name)}/${name}.styles.ts`;
-      componentIndexFile = (name: string) =>
-        `${this.componentsFolder(name)}/index.ts`;
-    }
-    componentGenerator = new ComponentGenerator(new FakePath());
+    componentGenerator = new ComponentGenerator(new FakeComponentPathFinder());
     await componentGenerator.generate("button");
   });
 

@@ -1,6 +1,7 @@
 import fs from "fs";
 import { Generator } from "./Generator";
 import { ComponentPath } from "../paths/ComponentPath";
+import { PathFinder } from "../paths/PathFinder";
 
 const componentTemplate = (
   name: string,
@@ -31,28 +32,23 @@ export { ${name} };
 `;
 
 export class ComponentGenerator implements Generator {
-  #path: ComponentPath;
+  #pathFinder: PathFinder<ComponentPath>;
 
-  constructor(path: ComponentPath) {
-    this.#path = path;
+  constructor(pathFinder: PathFinder<ComponentPath>) {
+    this.#pathFinder = pathFinder;
   }
 
   generate = async (name: string): Promise<void> => {
     const formattedName = this.#formatName(name);
+    const paths = this.#pathFinder.generate(formattedName);
     try {
-      await fs.promises.mkdir(this.#path.componentsFolder(formattedName), {
+      await fs.promises.mkdir(paths.folder, {
         recursive: true,
       });
+      await fs.promises.writeFile(paths.file, componentTemplate(formattedName));
+      await fs.promises.writeFile(paths.stylesFile, componentStyleTemplate());
       await fs.promises.writeFile(
-        this.#path.componentFile(formattedName),
-        componentTemplate(formattedName),
-      );
-      await fs.promises.writeFile(
-        this.#path.componentStylesFile(formattedName),
-        componentStyleTemplate(),
-      );
-      await fs.promises.writeFile(
-        this.#path.componentIndexFile(formattedName),
+        paths.indexFile,
         componentIndexTemplate(formattedName),
       );
       console.log("Success");

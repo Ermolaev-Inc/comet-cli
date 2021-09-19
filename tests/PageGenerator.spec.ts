@@ -1,7 +1,7 @@
 import { Generator } from "../src/generators/Generator";
-import { PagePath } from "../src/paths/PagePath";
 import { PageGenerator } from "../src/generators/PageGenerator";
 import * as fs from "fs";
+import { FakePagePathFinder } from "./FakePagePathFinder";
 
 const pageTemplate = `import * as S from "./Home.styles";
 
@@ -34,7 +34,7 @@ describe("PageContainer tests", () => {
 
   const existChecking = async () => {
     try {
-      await fs.promises.access(`${process.cwd()}/playground/pages/Home`);
+      await fs.promises.access(`${process.cwd()}/playground/pages/Home/`);
       await fs.promises.access(
         `${process.cwd()}/playground/pages/Home/Home.tsx`,
       );
@@ -51,17 +51,7 @@ describe("PageContainer tests", () => {
   };
 
   beforeAll(async () => {
-    class FakePath implements PagePath {
-      pageFolder = (name: string): string =>
-        `${process.cwd()}/playground/pages/${name}`;
-      pageContainerFile = (name: string): string =>
-        `${this.pageFolder(name)}/${name}Container.tsx`;
-      pageFile = (name: string): string =>
-        `${this.pageFolder(name)}/${name}.tsx`;
-      pageStylesFile = (name: string): string =>
-        `${this.pageFolder(name)}/${name}.styles.ts`;
-    }
-    pageGenerator = new PageGenerator(new FakePath());
+    pageGenerator = new PageGenerator(new FakePagePathFinder());
     await pageGenerator.generate("home");
   });
 
